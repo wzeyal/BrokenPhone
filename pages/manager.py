@@ -33,7 +33,7 @@ layout = html.Div(
                 multiple=True
             ),
         html.Div(id='output-data-upload'),
-        html.Button('Start Game', id='start', n_clicks=0),
+        dcc.Link(html.Button("Start Game"), href="/final",)
 
     ]
 )

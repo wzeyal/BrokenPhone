@@ -6,6 +6,6 @@ dash.register_page(__name__, path='/')
 layout = html.Div(
     [
         # dcc.Markdown(f'# {__name__}'),
-        html.Button('Create Game', id='create', n_clicks=0),
+        dcc.Link(html.Button("Create Game"), href="/manager",)
     ]
 )

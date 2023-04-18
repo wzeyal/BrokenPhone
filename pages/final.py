@@ -8,5 +8,7 @@ game_pin = 123456
 layout = html.Div(
     [
         dcc.Markdown(f'# {game_pin}'),
+        dcc.Markdown(f'## Should be a list of pictures'),
+        dcc.Link(html.Button("Create again"), href="/",)
     ]
 )
