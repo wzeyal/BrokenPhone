@@ -32,6 +32,7 @@ app.layout = html.Div(
         ),
         html.Div(
             style={'height': '90%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+            # style={'height': '90%'},
             children=[
                 dash.page_container
             ]

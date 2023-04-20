@@ -16,6 +16,7 @@ layout = html.Div(
         dcc.Link(html.Button("Create Game"), href="/manager",)
     ]
 )
+#              # style={'height': '90%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
 
 # dcc.Upload(
 #         id='upload-image',

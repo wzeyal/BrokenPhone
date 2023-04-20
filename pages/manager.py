@@ -41,14 +41,25 @@ game_pin = 123456
 layout = html.Div(
 
     # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
-    style={'display': 'flex', 'flex-direction': 'column'},
+    style={'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center'},
 
     children=[
+
         dcc.Upload(
-                id='upload-image',
-                children=html.Button('Upload Image')
-            ),
-        html.Div(id='output-image'),
-        dcc.Link(html.Button("Start Game"), href="/final",)
+            id='upload-image',
+            children=html.Button('Upload Image'),
+            # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+        ),
+        # html.Div("Space", style={'height': '20vh'}),
+        # html.Div(id='output-image', style={'height': '50vh'}),
+        html.Div(
+            id='output-image',
+            style={
+                'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'height': '80vh',
+                'max-width': '80vh', 'max-height': '80vh',
+            }
+        ),
+
+        dcc.Link(html.Button("Start Game"), href="/final", )
     ]
 )

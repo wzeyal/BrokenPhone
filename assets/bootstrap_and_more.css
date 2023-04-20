@@ -49,6 +49,10 @@
 /*    width: 100%;*/
 /*}*/
 
+button {
+  padding: 5px;
+}
+
 
 
 .flex-1-border {
