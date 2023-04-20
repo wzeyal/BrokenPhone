@@ -50,8 +50,6 @@ layout = html.Div(
             children=html.Button('Upload Image'),
             # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
         ),
-        # html.Div("Space", style={'height': '20vh'}),
-        # html.Div(id='output-image', style={'height': '50vh'}),
         html.Div(
             id='output-image',
             style={
