@@ -15,15 +15,15 @@ game_pin = 123456
 
 layout = html.Div(
     [
-        html.Div('10% Top', style={'height': '10%', 'text-align': 'center', 'background-color': 'red'}),
+        html.Div('10% Top', style={'height': '10vh', 'text-align': 'center', 'background-color': 'red'}),
         html.Div(
             [
                 dcc.Markdown(f'# {game_pin}'),
             ],
             '80% Middle',
-            style={'height': '80%', 'text-align': 'center', 'background-color': 'green'}
+            style={'height': '70vh', 'text-align': 'center', 'background-color': 'green'}
         ),
-        html.Div('10% Bottom', style={'height': '10%', 'text-align': 'center', 'background-color': 'red'})
+        html.Div('10% Bottom', style={'height': '10vh', 'text-align': 'center', 'background-color': 'red'})
     ],
-    style={'display': 'flex', 'flex-direction': 'column', 'height': '90vh'}
+    style={'display': 'flex', 'flex-direction': 'column', }
 )

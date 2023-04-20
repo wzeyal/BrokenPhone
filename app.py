@@ -17,17 +17,25 @@ server = app.server
 app.layout = html.Div(
     [
         # main app framework
-        html.Div("Broken Phone", style={'fontSize':50, 'textAlign':'center'}),
-        # html.Div([
-        #     dcc.Link(page['name']+"  |  ", href=page['path'])
-        #     for page in dash.page_registry.values()
-        # ]),
-        html.Hr(),
+        html.Div(
+            [
+                html.Div("Broken Phone", style={'fontSize': '5vh', 'textAlign': 'center', }),
+                # html.Div([
+                #     dcc.Link(page['name']+"  |  ", href=page['path'])
+                #     for page in dash.page_registry.values()
+                # ]),
+                html.Hr(),
+            ],
+            style={'height': '10vh', }
+        ),
+
         #
         # content of each page
         dash.page_container
-    ]
+    ],
+
 )
+
 
 def parse_contents(contents, filename, date):
     content_type, content_string = contents.split(',')
@@ -65,6 +73,7 @@ def parse_contents(contents, filename, date):
             'wordBreak': 'break-all'
         })
     ])
+
 
 @app.callback(Output('output-data-upload', 'children'),
               Input('upload-data', 'contents'),
