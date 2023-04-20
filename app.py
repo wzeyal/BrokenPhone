@@ -10,7 +10,13 @@ from dash import dcc, html, dash_table
 
 import pandas as pd
 
-app = dash.Dash(__name__, use_pages=True)
+# app = dash.Dash(__name__, use_pages=True)
+
+app = dash.Dash(__name__,
+                use_pages=True,
+                meta_tags=[{'name': 'viewport',
+                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}]
+                )
 # app = dash.Dash(__name__,)
 server = app.server
 
