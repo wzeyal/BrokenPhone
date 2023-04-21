@@ -53,8 +53,8 @@ layout = html.Div(
         html.Div(
             id='output-image',
             style={
-                'display': 'flex', 'justify-content': 'center', 'align-items': 'center', 'height': '80vh',
-                'max-width': '80vh', 'max-height': '80vh',
+                'display': 'flex', 'margin': '30px', 'height': '65vh',
+                'max-width': '65vh', 'max-height': '80vh',
             }
         ),
 
