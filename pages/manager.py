@@ -45,19 +45,26 @@ layout = html.Div(
 
     children=[
 
-        html.Button(
-            "text",
-            id='generate-picture'
-        ),
+        html.Div(
+            [
+                # html.Button(
+                #     "text",
+                #     id='generate-picture'
+                # ),
+                dcc.Input(id='my-input', type='text', placeholder='Enter text here...'),
 
-        dcc.Upload(
-            id='upload-image',
-            children=html.Button('Upload Image'),
-            # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+                dcc.Upload(
+                    id='upload-image',
+                    children=html.Button('Upload Image'),
+                    # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+                ),
+            ],
+            style={'display': 'flex', 'gap': '5px'}
         ),
         html.Div(
             id='output-image',
-            style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'height': '65vh', 'max-height': '65vh'}
+            style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'height': '65vh',
+                   'max-height': '65vh'}
             # style={
             #     'display': 'flex', 'margin': '30px', 'height': '65vh',
             #     'max-width': '65vh', 'max-height': '80vh',
