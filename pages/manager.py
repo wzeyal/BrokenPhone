@@ -45,6 +45,11 @@ layout = html.Div(
 
     children=[
 
+        html.Button(
+            "text",
+            id='generate-picture'
+        ),
+
         dcc.Upload(
             id='upload-image',
             children=html.Button('Upload Image'),
@@ -52,10 +57,11 @@ layout = html.Div(
         ),
         html.Div(
             id='output-image',
-            style={
-                'display': 'flex', 'margin': '30px', 'height': '65vh',
-                'max-width': '65vh', 'max-height': '80vh',
-            }
+            style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'height': '65vh', 'max-height': '65vh'}
+            # style={
+            #     'display': 'flex', 'margin': '30px', 'height': '65vh',
+            #     'max-width': '65vh', 'max-height': '80vh',
+            # }
         ),
 
         dcc.Link(html.Button("Start Game"), href="/final", )

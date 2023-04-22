@@ -7,6 +7,12 @@ import io
 import dash
 from dash.dependencies import Input, Output, State
 from dash import dcc, html, dash_table
+from craiyon import CraiyonV1
+
+# from PIL import Image
+from io import BytesIO
+import base64
+
 
 import pandas as pd
 
@@ -96,13 +102,37 @@ app.layout = html.Div(
 @app.callback(Output('output-image', 'children'),
               [Input('upload-image', 'contents')])
 def update_output(content):
+    # generator = CraiyonV1()  # Instantiates the api wrapper
+    # result = generator.generate("Photorealistic image of shrek eating earth")
+    # decoded = BytesIO(base64.b64decode(result.images[1]))
+    # return html.Img(src=decoded, style={'max-width': '100%'})
+
     if content is not None:
+        generator = CraiyonV1() # Instantiates the api wrapper
+        result = generator.generate("Photorealistic image of shrek eating earth")
+        from PIL import Image
+        data = result.images[0]
+        # data = base64.b64decode(data)
+        # data = BytesIO(data)
+
+        img = html.Img(src=f'data:image/jpeg;base64,{data}', style={'width': '100%'})
+        return img
+
+        im = Image.open(BytesIO(base64.b64decode(result.images[0])))
+
+        data = content.split(',')[1]
+        # img = html.Img(src=f'data:image/jpeg;base64,{data}', style={'width': '100%'})
+        img = html.Img(src=f'data:image/jpeg;base64,{data}', style={'width': '100%'})
+        return img
+
         # Decode the base64-encoded image
         _, content_string = content.split(',')
         decoded = base64.b64decode(content_string)
         # Convert the image to a BytesIO object
         image = io.BytesIO(decoded)
         # Display the image
+        img = html.Img(src=f'data:image/jpeg;base64,{image}', style={'width': '100%'})
+        return img
         return html.Img(src=content, style={'max-width': '100%'})
 
 
