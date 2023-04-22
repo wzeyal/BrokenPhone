@@ -115,7 +115,7 @@ def update_output(content):
         # data = base64.b64decode(data)
         # data = BytesIO(data)
 
-        img = html.Img(src=f'data:image/jpeg;base64,{data}', style={'width': '100%'})
+        img = html.Img(src=f'data:image/jpeg;base64,{data}')
         return img
 
         im = Image.open(BytesIO(base64.b64decode(result.images[0])))
