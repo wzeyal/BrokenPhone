@@ -94,32 +94,21 @@
 # # -----------------------------------
 
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
-from craiyon import CraiyonV1
-from dash.dependencies import Input, Output, State
-import random
+from dash import dcc
+from dash import html
+
 from dash.long_callback import DiskcacheLongCallbackManager
 
-
-
-## Diskcache
+# Diskcache
 import diskcache
+
+from controller import Controller
+from model import Model
 
 cache = diskcache.Cache("./cache")
 long_callback_manager = DiskcacheLongCallbackManager(cache)
 
 app = dash.Dash(__name__, long_callback_manager=long_callback_manager)
-
-class Model:
-    def __init__(self):
-        self.text = ""
-
-    def update_text(self, text):
-        self.text = text
-
-    def generate_text(self):
-        self.text = "".join(random.choices("abcdefghijklmnopqrstuvwxyz", k=10))
 
 
 class View:
@@ -144,43 +133,6 @@ class View:
                 )
             ),
         ])
-
-
-class Controller:
-    def __init__(self, app, model, view):
-        self.app = app
-        self.model = model
-        self.view = view
-
-        self.register_callbacks()
-
-    def register_callbacks(self):
-        @self.app.long_callback(
-            Output("output-image", "children", allow_duplicate=True),
-            [Input("text-input", "n_submit")],
-            State("text-input", "value"),
-            running=[
-                (Output("upload-image", "disabled"), True, False),
-            ],
-            prevent_initial_call=True
-        )
-        def update_text_label(n_submit, text):
-            # self.model.update_text(text)
-            generator = CraiyonV1()  # Instantiates the api wrapper
-            result = generator.generate(f"{text}")
-            data = result.images[0]
-
-            return html.Img(src=f'data:image/jpeg;base64,{data}', style={'height': '60vh'})
-
-        @self.app.callback(
-            Output("output-image", "children"),
-            [Input('upload-image', 'contents'), ],
-
-        )
-        def generate_text_label(content):
-            return html.Img(src=content, style={'height': '60vh'})
-            # self.model.generate_text()
-            # return self.model.text
 
 
 model = Model()
