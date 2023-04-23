@@ -51,7 +51,7 @@ layout = html.Div(
                 #     "text",
                 #     id='generate-picture'
                 # ),
-                dcc.Input(id='my-input', type='text', placeholder='Enter text here...'),
+                dcc.Input(id='manager_prompt', type='text', placeholder='Enter text here ...'),
 
                 dcc.Upload(
                     id='upload-image',

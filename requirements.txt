@@ -3,3 +3,4 @@ pandas
 gunicorn
 craiyon.py
 Pillow
+dash[diskcache]
