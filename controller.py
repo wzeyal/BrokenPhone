@@ -14,10 +14,12 @@ class Controller:
     def register_callbacks(self):
         @self.app.long_callback(
             Output("output-image", "children", allow_duplicate=True),
-            [Input("text-input", "n_submit")],
-            State("text-input", "value"),
+            [Input("create", "n_clicks")],
+            State("manager_prompt", "value"),
             running=[
                 (Output("upload-image", "disabled"), True, False),
+                (Output("create", "disabled"), True, False),
+                (Output("start-game", "disabled"), True, False),
             ],
             prevent_initial_call=True
         )
@@ -29,13 +31,17 @@ class Controller:
 
             return html.Img(src=f'data:image/jpeg;base64,{data}', style={'height': '60vh'})
 
-        @self.app.callback(
-            Output("output-image", "children"),
+        @self.app.long_callback(
+            Output("output-image", "children", allow_duplicate=True),
             [Input('upload-image', 'contents'), ],
+            prevent_initial_call=True,
+            running=[
+                (Output("upload-image", "disabled"), True, False),
+                (Output("create", "disabled"), True, False),
+                (Output("start-game", "disabled"), True, False),
+            ],
 
         )
         def on_upload_image(content):
             self.model.update_image(content)
             return html.Img(src=content, style={'height': '60vh'})
-            # self.model.generate_text()
-            # return self.model.text

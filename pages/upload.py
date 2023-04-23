@@ -3,74 +3,51 @@ from dash import dcc, html
 
 dash.register_page(__name__)
 
-nof_players = 5
-game_pin = 123456
 
-# layout = html.Div(
-#     [
-#         dcc.Markdown(f'# {game_pin}'),
-#         dcc.Markdown(f'# Number of players: {nof_players}'),
-#         dcc.Input(placeholder="Describe in details"),
-#         html.Button('Submit', id='submit-val', n_clicks=0),
-#         html.Button('Or upload an image', id='upload', n_clicks=0),
-#         dcc.Upload(
-#                 id='upload-data',
-#                 children=html.Div([
-#                     'Drag and Drop or ',
-#                     html.A('Select Files')
-#                 ]),
-#                 style={
-#                     'width': '100%',
-#                     'height': '60px',
-#                     'lineHeight': '60px',
-#                     'borderWidth': '1px',
-#                     'borderStyle': 'dashed',
-#                     'borderRadius': '5px',
-#                     'textAlign': 'center',
-#                     'margin': '10px'
-#                 },
-#                 # Allow multiple files to be uploaded
-#                 multiple=True
-#             ),
-#         html.Div(id='output-data-upload'),
-#         dcc.Link(html.Button("Start Game"), href="/final",)
-#
-#     ]
-# )
+class UploadView:
+    def __init__(self):
+        self.layout = html.Div(
 
-layout = html.Div(
+            # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+            style={'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center'},
 
-    # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
-    style={'display': 'flex', 'flex-direction': 'column', 'justify-content': 'center', 'align-items': 'center'},
+            children=[
 
-    children=[
+                html.Div(
+                    [
+                        # html.Button(
+                        #     "text",
+                        #     id='generate-picture'
+                        # ),
+                        dcc.Input(id='manager_prompt', type='text', placeholder='Enter text here ...'),
 
-        html.Div(
-            [
-                # html.Button(
-                #     "text",
-                #     id='generate-picture'
-                # ),
-                dcc.Input(id='text-input', type='text', placeholder='Enter text here ...'),
+                        html.Button("Create Image", id="create"),
+
+
+                    ],
+                    style={'display': 'flex', 'gap': '5px'}
+                ),
+
+                html.Br(),
 
                 dcc.Upload(
                     id='upload-image',
                     children=html.Button('Upload Image'),
                     # style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
                 ),
-            ],
-            style={'display': 'flex', 'gap': '5px'}
-        ),
-        html.Div(
-            id='output-image',
-            style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center', 'height': '65vh',
-                   'max-height': '65vh'}
-            # style={
-            #     'display': 'flex', 'margin': '30px', 'height': '65vh',
-            #     'max-width': '65vh', 'max-height': '80vh',
-            # }
-        ),
 
-        dcc.Link(html.Button("Start Game"), href="/final", )
-    ]
-)
+                dcc.Loading(
+                    html.Div(
+                        id='output-image',
+                        style={'display': 'flex', 'align-items': 'center', 'justify-content': 'center',
+                               'height': '65vh',
+                               'max-height': '65vh'}
+                    ),
+                ),
+
+                dcc.Link(html.Button("Start Game", id="start-game", disabled=True), href="/final", )
+            ]
+        )
+
+
+layout = UploadView().layout
