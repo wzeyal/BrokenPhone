@@ -5,10 +5,9 @@ from dash import html
 import random
 
 class Controller:
-    def __init__(self, app, model, view):
+    def __init__(self, app, model):
         self.app = app
         self.model = model
-        self.view = view
 
         self.register_callbacks()
 
