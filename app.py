@@ -22,6 +22,12 @@ server = app.server
 app.layout = html.Div(
     style={'height': '100vh', 'display': 'flex', 'flex-direction': 'column'},
     children=[
+
+        dcc.Location(id='url', refresh=False),
+
+        html.Div(id="hidden_div_for_redirect_callback"),
+
+
         html.Div(
             style={'height': '10%', 'background-color': 'lightgray', 'display': 'flex', 'align-items': 'center',
                    'justify-content': 'center'},
@@ -30,11 +36,15 @@ app.layout = html.Div(
             ]
         ),
         html.Div(
-            style={'height': '90%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
+            style={'height': '80%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
             # style={'height': '90%'},
             children=[
                 dash.page_container
             ]
+        ),
+        html.Div(
+            style={'height': '10%'},
+            # style={'height': '90%'},
         )
         # dash.page_container
     ]

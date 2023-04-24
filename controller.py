@@ -1,8 +1,9 @@
 from craiyon import CraiyonV1
 from dash.dependencies import Input, Output, State
-from dash import dcc
-from dash import html
-import random
+from dash import html, no_update, dcc
+
+
+# from furl import furl
 
 class Controller:
     def __init__(self, app, model):
@@ -45,3 +46,21 @@ class Controller:
         def on_upload_image(content):
             self.model.update_image(content)
             return html.Img(src=content, style={'height': '60vh'})
+
+        @self.app.callback(Output('hidden_div_for_redirect_callback', 'children'),
+                      [Input('url', 'href')])
+        def _content(href: str):
+            if "goto" in href:
+                return dcc.Location(pathname="/final", id="someid_doesnt_matter")
+            return  no_update
+            raise PreventUpdate()
+            print(href)
+
+            if "12" in href:
+                return "final"
+            print(href)
+            return "final"
+            return no_update
+            # f = furl(href)
+            # param1 = f.args['param1']
+            # param2 = f.args['param2']
