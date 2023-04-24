@@ -131,3 +131,13 @@ thead {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.template_view {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 0.9fr;
+    grid-template-areas:
+            "title"
+            "body";
+}

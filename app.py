@@ -5,7 +5,7 @@ from dash.long_callback import DiskcacheLongCallbackManager
 
 from controller import Controller
 from model import Model
-from pages.template import AppView
+from pages.template import TemplateView
 
 cache = diskcache.Cache("./cache")
 long_callback_manager = DiskcacheLongCallbackManager(cache)
@@ -20,7 +20,7 @@ app = dash.Dash(__name__,
 
 server = app.server
 
-app.layout = AppView().layout
+app.layout = TemplateView().layout
 
 model = Model()
 controller = Controller(app, model)
