@@ -6,3 +6,5 @@ Pillow
 dash[diskcache]
 dash_bootstrap_components
 diskcache
+multiprocess
+psutil
