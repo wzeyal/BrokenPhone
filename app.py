@@ -1,16 +1,17 @@
 import dash
-from dash import dcc, html, dash_table
-from controller import Controller
-from model import Model
-
+import dash_bootstrap_components as dbc
+import diskcache
 from dash.long_callback import DiskcacheLongCallbackManager
 
-import diskcache
+from controller import Controller
+from model import Model
+from pages.template import AppView
 
 cache = diskcache.Cache("./cache")
 long_callback_manager = DiskcacheLongCallbackManager(cache)
 
 app = dash.Dash(__name__,
+                external_stylesheets=[dbc.themes.SKETCHY],
                 long_callback_manager=long_callback_manager,
                 use_pages=True,
                 meta_tags=[{'name': 'viewport',
@@ -19,36 +20,7 @@ app = dash.Dash(__name__,
 
 server = app.server
 
-app.layout = html.Div(
-    style={'height': '100vh', 'display': 'flex', 'flex-direction': 'column'},
-    children=[
-
-        dcc.Location(id='url', refresh=False),
-
-        html.Div(id="hidden_div_for_redirect_callback"),
-
-
-        html.Div(
-            style={'height': '10%', 'background-color': 'lightgray', 'display': 'flex', 'align-items': 'center',
-                   'justify-content': 'center'},
-            children=[
-                html.Div("Broken Phone", style={'fontSize': '5vh', 'textAlign': 'center', }),
-            ]
-        ),
-        html.Div(
-            style={'height': '80%', 'display': 'flex', 'align-items': 'center', 'justify-content': 'center'},
-            # style={'height': '90%'},
-            children=[
-                dash.page_container
-            ]
-        ),
-        html.Div(
-            style={'height': '10%'},
-            # style={'height': '90%'},
-        )
-        # dash.page_container
-    ]
-)
+app.layout = AppView().layout
 
 model = Model()
 controller = Controller(app, model)
