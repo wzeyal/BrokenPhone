@@ -6,11 +6,10 @@ class TemplateView:
     def __init__(self):
         self.layout = html.Div(
             [
-                html.Div("My Phone", id="title"),
+                html.Div("My Phone", id="page_title"),
                 html.Div(
                     dash.page_container,
-                    id="body",
-                    style={'background-color': 'blue'}
+                    id="page_body",
                 ),
 
                 # html.Div("Body", style={'background-color': 'blue'}, id="body"),

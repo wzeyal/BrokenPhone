@@ -1,13 +1,17 @@
 import dash
-from dash import dcc, html
 import dash_bootstrap_components as dbc
-dash.register_page(__name__, path='/')
+from dash import dcc
+
+from pages.base import BasePage
+
+# dash.register_page(__name__, path="/")
 
 
-class MainView:
+class MainPage(BasePage):
     def __init__(self):
+        super().__init__()
         self.layout = dcc.Link(dbc.Button("Create Gam2e", id="create_game", color="Primary"), href="/upload",
                                style={'margin-top': '25vh'})
 
 
-layout = MainView().layout
+layout = MainPage().layout

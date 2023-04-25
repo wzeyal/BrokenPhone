@@ -136,8 +136,18 @@ thead {
     display: grid;
     height: 100vh;
     grid-template-columns: 1fr;
-    grid-template-rows: 0.1fr 0.9fr;
+    grid-template-rows: 10fr 90fr;
     grid-template-areas:
             "title"
             "body";
 }
+
+/*body{*/
+/*    background-color: #bf5a3d;*/
+/*    grid-area: body;*/
+/*}*/
+
+/*title{*/
+/*    background-color: #925a5c;*/
+/*    grid-area: title;*/
+/*}*/

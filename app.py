@@ -11,7 +11,7 @@ cache = diskcache.Cache("./cache")
 long_callback_manager = DiskcacheLongCallbackManager(cache)
 
 app = dash.Dash(__name__,
-                external_stylesheets=[dbc.themes.SKETCHY],
+                # external_stylesheets=[dbc.themes.SKETCHY],
                 long_callback_manager=long_callback_manager,
                 use_pages=True,
                 meta_tags=[{'name': 'viewport',
